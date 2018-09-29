@@ -1,0 +1,92 @@
+[[plugins]]
+repo   = 'Shougo/denite.nvim'
+on_cmd = 'Denite'
+
+hook_add = '''
+  " filear && buffer
+  "nnoremap <silent> ;f :<C-u>Denite file_rec -default-action=tabswitch -highlight-mode-insert=Search<CR>
+  " grep
+  "nnoremap <silent> ;g :<C-u>Denite grep -buffer-name=search -mode=normal -highlight-mode-insert=Search<CR>
+  " カーソルのワードを元にgrep
+  "nnoremap <silent> ;s :<C-u>Denite grep:::`expand('<cword>')` -buffer-name=search -mode=normal -highlight-mode-insert=Search<CR>
+  " grep結果の再呼び出し
+  "nnoremap <silent> ;r :<C-u>Denite -buffer-name=search -resume -mode=normal<CR>
+  " gtags関連
+  nnoremap <silent> ;j :<C-u>:DeniteCursorWord -buffer-name=gtags_context -mode=normal gtags_context<CR>
+  "nnoremap <silent> ;;j :<C-u>:DeniteCursorWord -buffer-name=gtags_def -mode=normal gtags_def<CR>
+  "nnoremap <silent> ;;r :<C-u>:DeniteCursorWord -buffer-name=gtags_ref -mode=normal gtags_ref<CR>
+'''
+
+hook_post_source = '''
+  " 検索候補にいれない拡張子を設定
+  call denite#custom#source('file_rec', 'matchers', ['matcher_fuzzy', 'matcher_ignore_globs'])
+  call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
+	      \ [ '.git/', '*~', '*.swp', '*.png', '*.jpg', '*.jpeg', '*.gif', '*.exe'])
+
+  " ファイル検索をripgrepに置き換える
+  call denite#custom#var('file_rec', 'command', ['rg', '--files', '--glob', '!.git'])
+
+  " grepの代わりにripgrepを使う
+  call denite#custom#var('grep', 'command', ['rg'])
+
+  " denite/insert モードのときは，C- で移動できるようにする
+  call denite#custom#map('insert', "<C-n>", '<denite:move_to_next_line>')
+  call denite#custom#map('insert', "<C-p>", '<denite:move_to_previous_line>')
+  call denite#custom#map('normal', "<C-n>", '<denite:move_to_next_line>')
+  call denite#custom#map('normal', "<C-p>", '<denite:move_to_previous_line>')
+'''
+
+[[plugins]]
+repo      = 'Shougo/neomru.vim'
+on_source = ['denite.nvim']   # unite.vimを読み込んだら読み込む
+
+[[plugins]]
+repo      = 'ozelentok/denite-gtags'
+on_source = ['denite.nvim']   # unite.vimを読み込んだら読み込む
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+hook_add = '''
+  let g:deoplete#enable_at_startup = 1
+  let g:deoplete#auto_complete_delay = 0
+  let g:deoplete#auto_complete_start_length = 3     " 補完を開始する桁数
+  let g:deoplete#enable_camel_case = 0
+  let g:deoplete#enable_ignore_case = 0
+  let g:deoplete#enable_refresh_always = 0
+  let g:deoplete#enable_smart_case = 1
+  let g:deoplete#file#enable_buffer_path = 1
+  let g:deoplete#max_list = 12
+
+  "Tab補完の設定
+  inoremap <expr><tab> pumvisible() ? "\<C-n>" :
+        \ neosnippet#expandable_or_jumpable() ?
+        \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
+'''
+on_i = 1
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+on_i = 1
+
+[[plugins]]
+repo = 'tpope/vim-endwise'
+on_i = 1
+
+[[plugins]]
+repo = 'kannokanno/previm'
+on_ft = ['markdown','mkd']
+hook_add = '''
+  let g:previm_open_cmd = 'open -a Safari'
+'''
+
+[[plugins]]
+repo = 'lighttiger2505/gtags.vim'
+hook_add = '''
+    " Options
+    let g:Gtags_Auto_Map = 0
+    let g:Gtags_OpenQuickfixWindow = 1
+    " Keymap
+    " Show definetion of function list on quickfix
+    nnoremap <silent> ;;l :<C-u>exe("Gtags -f %")<CR>
+'''
+

@@ -1,4 +1,7 @@
 [[plugins]]
+repo = 'machakann/vim-highlightedyank'
+
+[[plugins]]
 repo = 'Shougo/dein.vim'
 
 [[plugins]]

@@ -52,6 +52,8 @@ inoremap <C-J> <nop>
 inoremap <silent> jj <ESC>
 " 文字列置換をインタラクティブにする
 set inccommand=split
+" ターミナルモードを抜けるコマンド
+tnoremap <silent> jj <C-\><C-n>
 
 " ---------------
 " cursor line setting

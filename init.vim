@@ -50,6 +50,8 @@ autocmd BufWritePre * :%s/\s\+$//ge	" クリップボードを共用できるよ
 inoremap <C-J> <nop>
 " jjコマンドでinsert modeを抜ける
 inoremap <silent> jj <ESC>
+" 文字列置換をインタラクティブにする
+set inccommand=split
 
 " ---------------
 " cursor line setting
@@ -84,15 +86,6 @@ source $VIMRUNTIME/macros/matchit.vim  " vimの%を拡張する
 " ---------------
 set wildmenu        " コマンドモードの補完
 set history=500     " 保存するコマンド履歴数
-"nnoremap <silent> <C-l> gt	" ctrl+l 次のタブ
-"nnoremap <silent> <C-h> gT	" ctrl+h 前のタブ
-set hidden          " バッファが未保存でも他のバッファに移動できるようにする
-" ctrl+l 次のバッファ
-nnoremap <silent> <C-l> :bnext<CR>
-" ctrl+h 前のバッファ
-nnoremap <silent> <C-h> :bprev<CR>
-" ctrl+q ctrl+qでバッファ削除
-nnoremap <silent> <C-q><C-q> :bdelete<CR>
 
 " インサートモード時に日付入力
 inoremap ,date <C-R>=strftime('%Y-%m-%d')<CR>
@@ -131,10 +124,34 @@ autocmd BufNewFile,BufRead *.py nnoremap <C-e> :w<CR> :!python3 %<CR>
 set sh=zsh
 
 " ---------------
+" buffer setting
+" ---------------
+set hidden          " バッファが未保存でも他のバッファに移動できるようにする
+" ctrl+l 次のバッファ
+nnoremap <silent> <C-l> :bnext<CR>
+" ctrl+h 前のバッファ
+nnoremap <silent> <C-h> :bprev<CR>
+" ctrl+q ctrl+qでバッファ削除
+nnoremap <silent> <C-q><C-q> :bdelete<CR>
+" バッファを閉じる
+nnoremap ;q :<C-u>bd<CR>
+
+" ---------------
 " window setting
 " ---------------
-nnoremap <silent> ;sp :<C-u>split<CR>   " 縦にウィンドウを分割
-nnoremap <silent> ;sv :<C-u>vsplit<CR>  " 横にウィンドウを分割
+" 縦にウィンドウを分割
+nnoremap <silent> ;sp :<C-u>split<CR>
+" 横にウィンドウを分割
+nnoremap <silent> ;sv :<C-u>vsplit<CR>
+nnoremap s <Nop>
+nnoremap sp :<C-u>sp<CR>
+nnoremap sv :<C-u>vs<CR>
+" ウィンドウの移動
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sh <C-w>h
+nnoremap sl <C-w>l
+
 
 " ---------------
 " gtags setting

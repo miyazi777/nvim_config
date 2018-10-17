@@ -6,29 +6,29 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=$HOME/.config/nvim/repos/github.com/Shougo/dein.vim
+"set runtimepath+=$HOME/.config/nvim/repos/github.com/Shougo/dein.vim
 
 " Required:
-if dein#load_state('$HOME/.config/nvim')
-  call dein#begin('$HOME/.config/nvim')
-  " 起動時に読み込むプラグイン
-  call dein#load_toml('$HOME/.config/nvim/dein.toml', {'lazy':0})
-  " 遅延読み込みするプラグイン
-  call dein#load_toml('$HOME/.config/nvim/dein_lazy.toml', {'lazy':1})
-  " Required:
-  call dein#end()
-  call dein#save_state()
-endif
+"if dein#load_state('$HOME/.config/nvim')
+"  call dein#begin('$HOME/.config/nvim')
+"  " 起動時に読み込むプラグイン
+"  call dein#load_toml('$HOME/.config/nvim/dein.toml', {'lazy':0})
+"  " 遅延読み込みするプラグイン
+"  call dein#load_toml('$HOME/.config/nvim/dein_lazy.toml', {'lazy':1})
+"  " Required:
+"  call dein#end()
+"  call dein#save_state()
+"endif
 
 " tes
 "  Required:
-filetype plugin indent on
-syntax enable
+"filetype plugin indent on
+"syntax enable
 
 " If you want to install not installed plugins on startup.
-if dein#check_install()
-  call dein#install()
-endif
+"if dein#check_install()
+"  call dein#install()
+"endif
 
 " ------------------------------------------
 " End dein Scripts
@@ -163,3 +163,88 @@ nnoremap ;;u :AsyncRun! global -uv<CR>           " gtagsファイルの更新
 "nnoremap ;;j :GtagsCursor<CR>           " カーソル上の関数の定義場所へジャンプ
 "nnoremap ;;r :Gtags -r <C-r><C-w><CR>   " 定義が使われている箇所を一覧表示
 
+" ---------------
+" vim-plug setting
+" ---------------
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall
+endif
+call plug#begin('~/.config/nvim/plugged')
+Plug 'skywind3000/asyncrun.vim'
+Plug 'itchyny/vim-gitbranch'
+Plug 'itchyny/lightline.vim'
+Plug 'machakann/vim-highlightedyank'
+Plug 'mattesgroeger/vim-bookmarks'
+Plug 'airblade/vim-gitgutter'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'ap/vim-buftabline'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-endwise'
+call plug#end()
+
+" ---------------
+" vim-vuftabline.vim setting
+" ---------------
+let g:buftabline_show = 2
+let g:buftabline_numbers = 2
+
+highlight BufTabLineCurrent ctermbg=black
+highlight BufTabLineActive ctermbg=white
+highlight BufTabLineHidden ctermbg=darkgrey
+highlight BufTabLineFill ctermbg=grey
+
+" ---------------
+" vim-gitgutter.vim setting
+" ---------------
+set updatetime=100
+set signcolumn=yes
+
+" ---------------
+" fzf.vim setting
+" ---------------
+" layout - down / up / left / right
+let g:fzf_layout = { 'up': '~70%' }
+
+" file selector
+nnoremap <silent> ;f :FZFFileList<CR>
+command! FZFFileList call fzf#run({
+            \ 'source': 'find . -type d -name .git -prune -o ! -name .DS_Store ! -name "*~"',
+            \ 'options': '--exact --reverse',
+            \ 'sink': 'e'})
+
+" grep
+nnoremap <silent> ;g :Grep<CR>
+command! -bang -nargs=* Grep
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 0,
+  \   fzf#vim#with_preview({'options': '--exact --reverse'}, 'right:50%:wrap'))
+
+" under cursor grep
+nnoremap <silent> ;s :Find<CR>
+command! -bang -nargs=* Find
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always '.shellescape(expand('<cword>')), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+
+" ---------------
+" lightline.vim setting
+" ---------------
+let g:lightline = {
+      \ 'colorscheme': 'default',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'filename': 'FilePath',
+      \   'gitbranch': 'gitbranch#name'
+      \ },
+      \ }
+
+function! FilePath()
+  return expand("%:P")
+endfunction

@@ -117,7 +117,7 @@ endif
 " ---------------
 " script setting
 " ---------------
-autocmd BufNewFile,BufRead *.rb nnoremap <C-e> :w<CR> :!be ruby %<CR>
+autocmd BufNewFile,BufRead *.rb nnoremap <C-e> :w<CR> :!ruby %<CR>
 autocmd BufNewFile,BufRead *.py nnoremap <C-e> :w<CR> :!python3 %<CR>
 
 " ---------------
@@ -182,7 +182,13 @@ Plug 'junegunn/fzf.vim'
 Plug 'ap/vim-buftabline'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
+Plug 'mattn/emmet-vim'
+Plug 'deris/vim-shot-f'
 call plug#end()
+
+" ---------------
+" vim-shot-f.vim setting
+" ---------------
 
 " ---------------
 " vim-vuftabline.vim setting

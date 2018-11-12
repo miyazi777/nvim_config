@@ -184,6 +184,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
 Plug 'mattn/emmet-vim'
 Plug 'deris/vim-shot-f'
+Plug 'posva/vim-vue'
 call plug#end()
 
 " ---------------

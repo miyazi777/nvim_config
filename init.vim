@@ -188,6 +188,7 @@ Plug 'deris/vim-shot-f'
 Plug 'posva/vim-vue'
 Plug 'rhysd/clever-f.vim'
 Plug 'glidenote/memolist.vim'
+Plug 'itchyny/calendar.vim'
 call plug#end()
 
 " ---------------
@@ -269,3 +270,10 @@ let g:memolist_fzf = 1
 nnoremap <silent> ;;m :MemoNew<CR>
 nnoremap <silent> ;;l :MemoList<CR>
 nnoremap <silent> ;;g :MemoGrep<CR>
+
+
+" ---------------
+" calendar.vim setting
+" ---------------
+let g:calendar_google_calendar = 1
+

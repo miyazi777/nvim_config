@@ -119,6 +119,7 @@ endif
 " ---------------
 autocmd BufNewFile,BufRead *.rb nnoremap <C-e> :w<CR> :!ruby %<CR>
 autocmd BufNewFile,BufRead *.py nnoremap <C-e> :w<CR> :!python3 %<CR>
+autocmd BufNewFile,BufRead *.go nnoremap <C-e> :w<CR> :!go run %<CR>
 
 " ---------------
 " terminal setting
@@ -185,6 +186,8 @@ Plug 'tpope/vim-endwise'
 Plug 'mattn/emmet-vim'
 Plug 'deris/vim-shot-f'
 Plug 'posva/vim-vue'
+Plug 'rhysd/clever-f.vim'
+Plug 'glidenote/memolist.vim'
 call plug#end()
 
 " ---------------

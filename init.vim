@@ -189,6 +189,7 @@ Plug 'posva/vim-vue'
 Plug 'rhysd/clever-f.vim'
 Plug 'glidenote/memolist.vim'
 Plug 'itchyny/calendar.vim'
+Plug 'simeji/winresizer'
 call plug#end()
 
 " ---------------
@@ -276,4 +277,10 @@ nnoremap <silent> ;;g :MemoGrep<CR>
 " calendar.vim setting
 " ---------------
 let g:calendar_google_calendar = 1
+
+" ---------------
+" winresizer.vim setting
+" ---------------
+let g:winresizer_gui_enable = 1
+let g:winresizer_start_key = 'sr'
 

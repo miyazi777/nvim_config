@@ -190,6 +190,7 @@ Plug 'rhysd/clever-f.vim'
 Plug 'glidenote/memolist.vim'
 Plug 'itchyny/calendar.vim'
 Plug 'simeji/winresizer'
+Plug 'vimlab/split-term.vim'
 call plug#end()
 
 " ---------------
@@ -284,3 +285,8 @@ let g:calendar_google_calendar = 1
 let g:winresizer_gui_enable = 1
 let g:winresizer_start_key = 'sr'
 
+" ---------------
+" split-term setting
+" ---------------
+set splitbelow
+nnoremap <silent> ;t :25Term<CR>

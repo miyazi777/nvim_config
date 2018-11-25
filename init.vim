@@ -158,7 +158,7 @@ nnoremap sl <C-w>l
 " ---------------
 " method jump setting
 " ---------------
-"nnoremap <C-]> g<C-]>
+nnoremap <C-]> g<C-]>
 
 " ---------------
 " gtags setting

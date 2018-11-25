@@ -161,12 +161,6 @@ nnoremap sl <C-w>l
 "nnoremap <C-]> g<C-]>
 
 " ---------------
-" ctags setting
-" ---------------
-" ファイル更新時にtagファイルを作り直す
-au BufWritePost *.rb silent! AsyncRun! ctags -R -o newtags; mv newtags tags
-
-" ---------------
 " gtags setting
 " ---------------
 "nnoremap ;;u :AsyncRun! global -uv<CR>           " gtagsファイルの更新
@@ -206,6 +200,8 @@ Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
+
+Plug 'ludovicchabant/vim-gutentags'
 call plug#end()
 
 " ---------------
@@ -339,7 +335,5 @@ autocmd filetype ruby setlocal omnifunc=lsp#complete
 
 autocmd filetype go nnoremap <silent> ;j :LspDefinition<CR>
 "nnoremap <C-]> :LspDefinition<CR>
-
-
 
 

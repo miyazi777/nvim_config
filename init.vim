@@ -155,11 +155,21 @@ nnoremap sk <C-w>k
 nnoremap sh <C-w>h
 nnoremap sl <C-w>l
 
+" ---------------
+" method jump setting
+" ---------------
+"nnoremap <C-]> g<C-]>
+
+" ---------------
+" ctags setting
+" ---------------
+" ファイル更新時にtagファイルを作り直す
+au BufWritePost *.rb silent! AsyncRun! ctags -R -o newtags; mv newtags tags
 
 " ---------------
 " gtags setting
 " ---------------
-nnoremap ;;u :AsyncRun! global -uv<CR>           " gtagsファイルの更新
+"nnoremap ;;u :AsyncRun! global -uv<CR>           " gtagsファイルの更新
 "nnoremap ;;l :Gtags -f %<CR>            " カレントファイル内の関数一覧
 "nnoremap ;;j :GtagsCursor<CR>           " カーソル上の関数の定義場所へジャンプ
 "nnoremap ;;r :Gtags -r <C-r><C-w><CR>   " 定義が使われている箇所を一覧表示
@@ -191,6 +201,11 @@ Plug 'glidenote/memolist.vim'
 Plug 'itchyny/calendar.vim'
 Plug 'simeji/winresizer'
 Plug 'vimlab/split-term.vim'
+
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
 call plug#end()
 
 " ---------------
@@ -243,6 +258,13 @@ command! -bang -nargs=* Find
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
 
+" tags
+"nnoremap <silent> ;g :Tags<CR>
+" <C-]>でタグ検索
+nnoremap <silent> <C-]> :call fzf#vim#tags(expand('<cword>'))<CR>
+" fzfからファイルにジャンプできるようにする
+let g:fzf_buffers_jump = 1
+
 " ---------------
 " lightline.vim setting
 " ---------------
@@ -290,3 +312,33 @@ let g:winresizer_start_key = 'sr'
 " ---------------
 set splitbelow
 nnoremap <silent> ;t :25Term<CR>
+
+
+" ---------------
+" vim-lsp setting
+" ---------------
+"if executable('solargraph')
+"  au User lsp_setup call lsp#register_server({
+"        \ 'name': 'solargraph',
+"        \ 'cmd': {server_info->['solargraph stdio']},
+"        \ 'whitelist': ['ruby'],
+"        \ })
+"endif
+
+if executable('go-langserver')
+  au User lsp_setup call lsp#register_server({
+        \ 'name': 'go-langserver',
+        \ 'cmd': {server_info->['go-langserver', '-mode', 'stdio']},
+        \ 'whitelist': ['go'],
+        \ })
+endif
+
+let g:lsp_async_completion = 1
+autocmd FileType ruby setlocal omnifunc=lsp#complete
+
+nnoremap <silent> ;j :LspDefinition<CR>
+"nnoremap <C-]> :LspDefinition<CR>
+
+
+
+

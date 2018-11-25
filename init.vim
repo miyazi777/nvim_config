@@ -261,7 +261,8 @@ command! -bang -nargs=* Find
 " tags
 "nnoremap <silent> ;g :Tags<CR>
 " <C-]>でタグ検索
-nnoremap <silent> <C-]> :call fzf#vim#tags(expand('<cword>'))<CR>
+"nnoremap <silent> <C-]> :call fzf#vim#tags(expand('<cword>'))<CR>
+autocmd filetype ruby nnoremap <silent> ;j :call fzf#vim#tags(expand('<cword>'))<CR>
 " fzfからファイルにジャンプできるようにする
 let g:fzf_buffers_jump = 1
 
@@ -317,13 +318,13 @@ nnoremap <silent> ;t :25Term<CR>
 " ---------------
 " vim-lsp setting
 " ---------------
-"if executable('solargraph')
-"  au User lsp_setup call lsp#register_server({
-"        \ 'name': 'solargraph',
-"        \ 'cmd': {server_info->['solargraph stdio']},
-"        \ 'whitelist': ['ruby'],
-"        \ })
-"endif
+if executable('solargraph')
+  au User lsp_setup call lsp#register_server({
+        \ 'name': 'solargraph',
+        \ 'cmd': {server_info->['solargraph stdio']},
+        \ 'whitelist': ['ruby'],
+        \ })
+endif
 
 if executable('go-langserver')
   au User lsp_setup call lsp#register_server({
@@ -334,9 +335,9 @@ if executable('go-langserver')
 endif
 
 let g:lsp_async_completion = 1
-autocmd FileType ruby setlocal omnifunc=lsp#complete
+autocmd filetype ruby setlocal omnifunc=lsp#complete
 
-nnoremap <silent> ;j :LspDefinition<CR>
+autocmd filetype go nnoremap <silent> ;j :LspDefinition<CR>
 "nnoremap <C-]> :LspDefinition<CR>
 
 

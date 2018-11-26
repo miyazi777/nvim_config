@@ -1,39 +1,3 @@
-" ------------------------------------------
-" dein Scripts
-" ------------------------------------------
-if &compatible
-  set nocompatible               " Be iMproved
-endif
-
-" Required:
-"set runtimepath+=$HOME/.config/nvim/repos/github.com/Shougo/dein.vim
-
-" Required:
-"if dein#load_state('$HOME/.config/nvim')
-"  call dein#begin('$HOME/.config/nvim')
-"  " 起動時に読み込むプラグイン
-"  call dein#load_toml('$HOME/.config/nvim/dein.toml', {'lazy':0})
-"  " 遅延読み込みするプラグイン
-"  call dein#load_toml('$HOME/.config/nvim/dein_lazy.toml', {'lazy':1})
-"  " Required:
-"  call dein#end()
-"  call dein#save_state()
-"endif
-
-" tes
-"  Required:
-"filetype plugin indent on
-"syntax enable
-
-" If you want to install not installed plugins on startup.
-"if dein#check_install()
-"  call dein#install()
-"endif
-
-" ------------------------------------------
-" End dein Scripts
-" ------------------------------------------
-
 " --------------------------------
 " basic setting
 " --------------------------------

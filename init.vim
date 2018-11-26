@@ -133,6 +133,13 @@ nnoremap <C-]> g<C-]>
 "nnoremap ;;r :Gtags -r <C-r><C-w><CR>   " 定義が使われている箇所を一覧表示
 
 " ---------------
+" dynamic provider setting
+" ---------------
+let g:python_host_prog  = '~/.pyenv/versions/py2neovim/bin/python'
+let g:python3_host_prog = '~/.pyenv/versions/py3neovim/bin/python'
+let g:ruby_host_prog = '~/.rbenv/versions/2.5.1/bin/neovim-ruby-host'
+
+" ---------------
 " vim-plug setting
 " ---------------
 if empty(glob('~/.config/nvim/autoload/plug.vim'))

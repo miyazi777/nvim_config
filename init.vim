@@ -135,9 +135,9 @@ nnoremap <C-]> g<C-]>
 " ---------------
 " dynamic provider setting
 " ---------------
-let g:python_host_prog  = '~/.pyenv/versions/py2neovim/bin/python'
-let g:python3_host_prog = '~/.pyenv/versions/py3neovim/bin/python'
-let g:ruby_host_prog = '~/.rbenv/versions/2.5.1/bin/neovim-ruby-host'
+let g:python_host_prog  = '/Users/miyajimatakeshi/.pyenv/versions/py2neovim/bin/python'
+let g:python3_host_prog = '/Users/miyajimatakeshi/.pyenv/versions/py3neovim/bin/python'
+let g:ruby_host_prog = '/Users/miyajimatakeshi/.rbenv/versions/2.5.1/bin/neovim-ruby-host'
 
 " ---------------
 " vim-plug setting
@@ -301,10 +301,18 @@ if executable('go-langserver')
         \ })
 endif
 
-let g:lsp_async_completion = 1
-autocmd filetype ruby setlocal omnifunc=lsp#complete
-
 autocmd filetype go nnoremap <silent> ;j :LspDefinition<CR>
 "nnoremap <C-]> :LspDefinition<CR>
 
+let g:lsp_async_completion = 1
+"let g:lsp_log_verbose = 1
+"let g:lsp_log_file = expand("~/vim-lsp.log")
+
+autocmd FileType ruby setlocal omnifunc=lsp#complete
+
+"inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+"inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+"inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
+"imap <c-space> <Plug>(asyncomplete_force_refresh)
+"autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 

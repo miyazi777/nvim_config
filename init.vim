@@ -166,13 +166,18 @@ Plug 'glidenote/memolist.vim'
 Plug 'itchyny/calendar.vim'
 Plug 'simeji/winresizer'
 Plug 'vimlab/split-term.vim'
+Plug 'ludovicchabant/vim-gutentags'
 
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
+"Plug 'yami-beta/asyncomplete-omni.vim'
+Plug 'prabirshrestha/asyncomplete-gocode.vim'
 
-Plug 'ludovicchabant/vim-gutentags'
+"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
+
 call plug#end()
 
 " ---------------
@@ -279,7 +284,7 @@ let g:winresizer_start_key = 'sr'
 " split-term setting
 " ---------------
 set splitbelow
-nnoremap <silent> ;t :25Term<CR>
+nnoremap <silent> ;;t :25Term<CR>
 
 
 " ---------------
@@ -296,7 +301,7 @@ endif
 if executable('go-langserver')
   au User lsp_setup call lsp#register_server({
         \ 'name': 'go-langserver',
-        \ 'cmd': {server_info->['go-langserver', '-mode', 'stdio']},
+        \ 'cmd': {server_info->['go-langserver', '-gocodecompletion']},
         \ 'whitelist': ['go'],
         \ })
 endif
@@ -305,14 +310,43 @@ autocmd filetype go nnoremap <silent> ;j :LspDefinition<CR>
 "nnoremap <C-]> :LspDefinition<CR>
 
 let g:lsp_async_completion = 1
+let g:lsp_signs_error = {'text': '✗'}
 "let g:lsp_log_verbose = 1
-"let g:lsp_log_file = expand("~/vim-lsp.log")
+"let g:lsp_log_file = expand("~/.config/nvim/vim-lsp.log")
 
 autocmd FileType ruby setlocal omnifunc=lsp#complete
+autocmd FileType go setlocal omnifunc=lsp#complete
 
+" ---------------
+" asynccomplete setting
+" ---------------
+let g:asyncomplete_auto_popup = 1
+"let g:asyncomplete_log_file = expand('~/.config/nvim/asyncomplete.log')
 "inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 "inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 "inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
 "imap <c-space> <Plug>(asyncomplete_force_refresh)
 "autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
+" ---------------
+" asyncomplete-gocode.vim setting
+" ---------------
+call asyncomplete#register_source(asyncomplete#sources#gocode#get_source_options({
+    \ 'name': 'gocode',
+    \ 'whitelist': ['go'],
+    \ 'completor': function('asyncomplete#sources#gocode#completor'),
+    \ 'config': {
+    \    'gocode_path': expand('~/go/bin/gocode')
+    \  },
+    \ }))
+
+" ---------------
+" asynccomplete-omni setting
+" ---------------
+" call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
+" \ 'name': 'omni',
+" \ 'whitelist': ['*'],
+" \ 'blacklist': ['c', 'cpp', 'html'],
+" \ 'completor': function('asyncomplete#sources#omni#completor')
+" \  }))
 

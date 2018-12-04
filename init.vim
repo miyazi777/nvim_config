@@ -172,8 +172,8 @@ Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
-"Plug 'yami-beta/asyncomplete-omni.vim'
 Plug 'prabirshrestha/asyncomplete-gocode.vim'
+Plug 'prabirshrestha/asyncomplete-file.vim'
 
 "Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
@@ -342,12 +342,11 @@ call asyncomplete#register_source(asyncomplete#sources#gocode#get_source_options
     \ }))
 
 " ---------------
-" asynccomplete-omni setting
+" asyncomplete-file.vim setting
 " ---------------
-" call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
-" \ 'name': 'omni',
-" \ 'whitelist': ['*'],
-" \ 'blacklist': ['c', 'cpp', 'html'],
-" \ 'completor': function('asyncomplete#sources#omni#completor')
-" \  }))
-
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+    \ 'name': 'file',
+    \ 'whitelist': ['*'],
+    \ 'priority': 10,
+    \ 'completor': function('asyncomplete#sources#file#completor')
+    \ }))

@@ -174,6 +174,8 @@ Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/asyncomplete-gocode.vim'
 Plug 'prabirshrestha/asyncomplete-file.vim'
+Plug 'prabirshrestha/asyncomplete-buffer.vim'
+Plug 'prabirshrestha/asyncomplete-tags.vim'
 
 "Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
@@ -322,6 +324,7 @@ autocmd FileType go setlocal omnifunc=lsp#complete
 " asynccomplete setting
 " ---------------
 let g:asyncomplete_auto_popup = 1
+let g:asyncomplete_remove_duplicates = 1
 "let g:asyncomplete_log_file = expand('~/.config/nvim/asyncomplete.log')
 "inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 "inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -349,4 +352,26 @@ au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#source
     \ 'whitelist': ['*'],
     \ 'priority': 10,
     \ 'completor': function('asyncomplete#sources#file#completor')
+    \ }))
+
+" ---------------
+" asyncomplete-buffer.vim setting
+" ---------------
+call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+    \ 'name': 'buffer',
+    \ 'whitelist': ['*'],
+    \ 'blacklist': ['go', 'ruby'],
+    \ 'completor': function('asyncomplete#sources#buffer#completor'),
+    \ }))
+
+" ---------------
+" asyncomplete-tags.vim setting
+" ---------------
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
+    \ 'name': 'tags',
+    \ 'whitelist': ['ruby'],
+    \ 'completor': function('asyncomplete#sources#tags#completor'),
+    \ 'config': {
+    \    'max_file_size': 500000000,
+    \  },
     \ }))

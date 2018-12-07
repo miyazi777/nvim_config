@@ -20,6 +20,23 @@ set inccommand=split
 tnoremap <silent> jj <C-\><C-n>
 
 " ---------------
+" macvim setting
+" ---------------
+if has('gui_macvim')
+  set columns=120
+  set lines=60
+  set termguicolors       " TrueColor設定
+  set guifont=Menlo:h14   " font
+  set transparency=8      " 透明度を設定
+  set guioptions-=T       " No toolbars
+  set guioptions-=r       " No scrollbars
+  hi Normal ctermbg=Black ctermfg=White guifg=White guibg=Black
+  "set background=light    " dark or light
+  set background=dark     " dark or light
+  colorscheme solarized
+end
+
+" ---------------
 " cursor line setting
 " ---------------
 set cursorline			 	        " カーソル行のハイライト
@@ -37,6 +54,14 @@ set laststatus=2    " ステータスラインを常に表示
 set showmode        " 現在のモードを表示
 set showcmd         " コマンド表示
 set ruler           " カーソル位置
+
+" ---------------
+" popup menu setting
+" ---------------
+" popup menu color
+highlight Pmenu ctermfg=Black ctermbg=White
+" popup menu select item color
+highlight PmenuSel ctermfg=Black ctermbg=gray
 
 " ---------------
 " search setting
@@ -142,11 +167,19 @@ let g:ruby_host_prog = '/Users/miyajimatakeshi/.rbenv/versions/2.5.1/bin/neovim-
 " ---------------
 " vim-plug setting
 " ---------------
-if empty(glob('~/.config/nvim/autoload/plug.vim'))
+if has('nvim')
+  let s:plugin_path = '~/.config/nvim/'
+elseif has('gui_macvim')
+  let s:plugin_path = '~/.config/nvim/'
+endif
+if empty(glob(s:plugin_path.'autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall
 endif
-call plug#begin('~/.config/nvim/plugged')
+
+call plug#begin(s:plugin_path.'plugged')
+Plug 'altercation/vim-colors-solarized', {'do': 'cp colors/* ~/.config/nvim/colors/'}
+
 Plug 'skywind3000/asyncrun.vim'
 Plug 'itchyny/vim-gitbranch'
 Plug 'itchyny/lightline.vim'
@@ -325,6 +358,9 @@ autocmd FileType go setlocal omnifunc=lsp#complete
 " ---------------
 let g:asyncomplete_auto_popup = 1
 let g:asyncomplete_remove_duplicates = 1
+if has('gui_macvim')
+  let g:asyncomplete_log_file = expand('~/.vim/asyncomplete.log')
+end
 "let g:asyncomplete_log_file = expand('~/.config/nvim/asyncomplete.log')
 "inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 "inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"

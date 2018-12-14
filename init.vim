@@ -200,6 +200,7 @@ Plug 'itchyny/calendar.vim'
 Plug 'simeji/winresizer'
 Plug 'vimlab/split-term.vim'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'LeafCage/yankround.vim'
 
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
@@ -411,3 +412,13 @@ au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#source
     \    'max_file_size': 500000000,
     \  },
     \ }))
+
+" ---------------
+" yankround.vim setting
+" ---------------
+nmap p <Plug>(yankround-p)
+nmap P <Plug>(yankround-P)
+nmap <C-p> <Plug>(yankround-next)
+nmap <C-n> <Plug>(yankround-prev)
+"" 履歴取得数
+let g:yankround_max_history = 50

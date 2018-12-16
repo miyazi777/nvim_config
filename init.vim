@@ -344,7 +344,7 @@ if executable('go-langserver')
 endif
 
 autocmd filetype go nnoremap <silent> ;j :LspDefinition<CR>
-"nnoremap <C-]> :LspDefinition<CR>
+nnoremap <C-]> :LspDefinition<CR>
 
 let g:lsp_async_completion = 1
 let g:lsp_signs_error = {'text': '✗'}
@@ -377,7 +377,7 @@ call asyncomplete#register_source(asyncomplete#sources#gocode#get_source_options
     \ 'whitelist': ['go'],
     \ 'completor': function('asyncomplete#sources#gocode#completor'),
     \ 'config': {
-    \    'gocode_path': expand('~/go/bin/gocode')
+    \    'gocode_path': expand('~/.golang/bin/gocode')
     \  },
     \ }))
 

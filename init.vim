@@ -202,6 +202,10 @@ Plug 'vimlab/split-term.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'LeafCage/yankround.vim'
 
+Plug 'tpope/vim-markdown'
+Plug 'kannokanno/previm'
+Plug 'tyru/open-browser.vim'
+
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete.vim'
@@ -422,3 +426,18 @@ nmap <C-p> <Plug>(yankround-next)
 nmap <C-n> <Plug>(yankround-prev)
 "" 履歴取得数
 let g:yankround_max_history = 50
+
+
+" ---------------
+" previm.vim setting
+" ---------------
+""" markdown {{{
+   autocmd BufRead,BufNewFile *.mkd  set filetype=markdown
+   autocmd BufRead,BufNewFile *.md  set filetype=markdown
+   " Need: kannokanno/previm
+   nnoremap <silent> ;;p :PrevimOpen<CR> " ;;pでプレビュー
+   " 自動で折りたたまないようにする
+   let g:vim_markdown_folding_disabled=1
+   let g:previm_enable_realtime = 1
+ " }}}
+

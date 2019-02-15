@@ -9,6 +9,7 @@ syntax on				            " シンタックスハイライト
 set number				            " 行番号表示
 set clipboard=unnamed		        " クリップボードを共用できるようにする
 set laststatus=2			        " ステータスライン表示
+set ignorecase                " 検索時に大文字・小文字を区別しない
 autocmd BufWritePre * :%s/\s\+$//ge	" クリップボードを共用できるようにする
 " 日本語切り替えのctrl+Jの無効化
 inoremap <C-J> <nop>

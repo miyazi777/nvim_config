@@ -34,7 +34,8 @@ if has('gui_macvim')
   hi Normal ctermbg=Black ctermfg=White guifg=White guibg=Black
   "set background=light    " dark or light
   set background=dark     " dark or light
-  colorscheme solarized
+  "colorscheme solarized
+  colorscheme monokai
 end
 
 " ---------------
@@ -180,6 +181,7 @@ endif
 
 call plug#begin(s:plugin_path.'plugged')
 Plug 'altercation/vim-colors-solarized', {'do': 'cp colors/* ~/.config/nvim/colors/'}
+Plug 'sickill/vim-monokai', {'do': 'cp colors/* ~/.config/nvim/colors/'}
 
 Plug 'skywind3000/asyncrun.vim'
 Plug 'itchyny/vim-gitbranch'
@@ -347,6 +349,14 @@ if executable('go-langserver')
         \ 'whitelist': ['go'],
         \ })
 endif
+" see https://github.com/prabirshrestha/vim-lsp/wiki/Servers-Go
+"if executable('gopls')
+"  au User lsp_setup call lsp#register_server({
+"      \ 'name': 'gopls',
+"      \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
+"      \ 'whitelist': ['go'],
+"      \ })
+"endif
 
 autocmd filetype go nnoremap <silent> ;j :LspDefinition<CR>
 nnoremap <C-]> :LspDefinition<CR>
@@ -377,14 +387,14 @@ end
 " ---------------
 " asyncomplete-gocode.vim setting
 " ---------------
-call asyncomplete#register_source(asyncomplete#sources#gocode#get_source_options({
-    \ 'name': 'gocode',
-    \ 'whitelist': ['go'],
-    \ 'completor': function('asyncomplete#sources#gocode#completor'),
-    \ 'config': {
-    \    'gocode_path': expand('~/.golang/bin/gocode')
-    \  },
-    \ }))
+"call asyncomplete#register_source(asyncomplete#sources#gocode#get_source_options({
+"    \ 'name': 'gocode',
+"    \ 'whitelist': ['go'],
+"    \ 'completor': function('asyncomplete#sources#gocode#completor'),
+"    \ 'config': {
+"    \    'gocode_path': expand('~/.golang/bin/gocode')
+"    \  },
+"    \ }))
 
 " ---------------
 " asyncomplete-file.vim setting

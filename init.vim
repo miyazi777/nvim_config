@@ -36,6 +36,7 @@ if has('gui_macvim')
   set background=dark     " dark or light
   "colorscheme solarized
   colorscheme monokai
+  "colorscheme antares
 end
 
 " ---------------
@@ -182,6 +183,7 @@ endif
 call plug#begin(s:plugin_path.'plugged')
 Plug 'altercation/vim-colors-solarized', {'do': 'cp colors/* ~/.config/nvim/colors/'}
 Plug 'sickill/vim-monokai', {'do': 'cp colors/* ~/.config/nvim/colors/'}
+Plug 'Haron-Prime/Antares', {'do': 'cp colors/* ~/.config/nvim/colors/'}
 
 Plug 'skywind3000/asyncrun.vim'
 Plug 'itchyny/vim-gitbranch'
@@ -250,6 +252,9 @@ set signcolumn=yes
 " layout - down / up / left / right
 let g:fzf_layout = { 'up': '~70%' }
 
+" git file selector
+nnoremap <silent> ;gf :GFiles<CR>
+
 " file selector
 nnoremap <silent> ;f :FZFFileList<CR>
 command! FZFFileList call fzf#run({
@@ -261,14 +266,14 @@ command! FZFFileList call fzf#run({
 nnoremap <silent> ;g :Grep<CR>
 command! -bang -nargs=* Grep
   \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 0,
-  \   fzf#vim#with_preview({'options': '--exact --reverse'}, 'right:50%:wrap'))
+  \   'rg --column --line-number --no-heading --color=always --glob "!tags" --glob "!tags.temp" '.shellescape(<q-args>), 0,
+  \   fzf#vim#with_preview({'options': '--exact --reverse --delimiter : --nth 3..'}, 'right:50%:wrap'))
 
 " under cursor grep
 nnoremap <silent> ;s :Find<CR>
 command! -bang -nargs=* Find
   \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always '.shellescape(expand('<cword>')), 1,
+  \   'rg --column --line-number --no-heading --color=always --glob "!tags" --glob "!tags.temp" '.shellescape(expand('<cword>')), 1,
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)

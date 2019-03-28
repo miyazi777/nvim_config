@@ -220,8 +220,8 @@ Plug 'prabirshrestha/asyncomplete-file.vim'
 Plug 'prabirshrestha/asyncomplete-buffer.vim'
 Plug 'prabirshrestha/asyncomplete-tags.vim'
 
-"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+"Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 
 call plug#end()
 
@@ -379,6 +379,18 @@ let g:lsp_signs_error = {'text': '✗'}
 
 autocmd FileType ruby setlocal omnifunc=lsp#complete
 autocmd FileType go setlocal omnifunc=lsp#complete
+
+" ---------------
+" vim-go.vim setting
+" ---------------
+"autocmd FileType go nmap <silent> <M-d> :GoDebugStart<CR>
+"autocmd FileType go nmap <silent> <M-q> :GoDebugStop<CR>
+"autocmd FileType go nmap <silent> <M-r> :GoDebugRestart<CR>
+"autocmd FileType go nmap <silent> <M-c> :GoDebugContinue<CR>
+"autocmd FileType go nmap <silent> <M-b> :GoDebugBreakpoint<CR>
+"autocmd FileType go nmap <silent> <M-n> :GoDebugNext<CR>
+"autocmd FileType go nmap <silent> <M-s> :GoDebugStep<CR>
+"autocmd FileType go nmap <silent> <M-o> :GoDebugStepOut<CR>
 
 " ---------------
 " asynccomplete setting

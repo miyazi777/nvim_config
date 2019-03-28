@@ -206,6 +206,7 @@ Plug 'simeji/winresizer'
 Plug 'vimlab/split-term.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'LeafCage/yankround.vim'
+"Plug 'hackhowtofaq/vim-solargraph'
 
 Plug 'tpope/vim-markdown'
 Plug 'kannokanno/previm'
@@ -221,6 +222,7 @@ Plug 'prabirshrestha/asyncomplete-buffer.vim'
 Plug 'prabirshrestha/asyncomplete-tags.vim'
 
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+"Plug 'jodosha/vim-godebug'
 "Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 
 call plug#end()
@@ -381,16 +383,29 @@ autocmd FileType ruby setlocal omnifunc=lsp#complete
 autocmd FileType go setlocal omnifunc=lsp#complete
 
 " ---------------
+" quickfix setting
+" ---------------
+nnoremap pp :cprevious<CR>
+nnoremap nn :cnext<CR>
+nnoremap nn :cnext<CR>
+
+" ---------------
 " vim-go.vim setting
 " ---------------
-"autocmd FileType go nmap <silent> <M-d> :GoDebugStart<CR>
-"autocmd FileType go nmap <silent> <M-q> :GoDebugStop<CR>
-"autocmd FileType go nmap <silent> <M-r> :GoDebugRestart<CR>
-"autocmd FileType go nmap <silent> <M-c> :GoDebugContinue<CR>
-"autocmd FileType go nmap <silent> <M-b> :GoDebugBreakpoint<CR>
-"autocmd FileType go nmap <silent> <M-n> :GoDebugNext<CR>
-"autocmd FileType go nmap <silent> <M-s> :GoDebugStep<CR>
-"autocmd FileType go nmap <silent> <M-o> :GoDebugStepOut<CR>
+set autowrite
+autocmd FileType go nmap <leader>b  <Plug>(go-build)
+autocmd FileType go nmap <leader>r  <Plug>(go-run)
+let g:go_list_type = "quickfix"
+
+" debug setting
+autocmd FileType go nmap <silent> <M-d> :GoDebugStart<CR>
+autocmd FileType go nmap <silent> <M-q> :GoDebugStop<CR>
+autocmd FileType go nmap <silent> <M-r> :GoDebugRestart<CR>
+autocmd FileType go nmap <silent> <M-c> :GoDebugContinue<CR>
+autocmd FileType go nmap <silent> <M-b> :GoDebugBreakpoint<CR>
+autocmd FileType go nmap <silent> <M-n> :GoDebugNext<CR>
+autocmd FileType go nmap <silent> <M-s> :GoDebugStep<CR>
+autocmd FileType go nmap <silent> <M-o> :GoDebugStepOut<CR>
 
 " ---------------
 " asynccomplete setting

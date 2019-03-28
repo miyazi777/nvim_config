@@ -258,7 +258,7 @@ nnoremap <silent> ;gf :GFiles<CR>
 " file selector
 nnoremap <silent> ;f :FZFFileList<CR>
 command! FZFFileList call fzf#run({
-            \ 'source': 'find . -type d -name .git -prune -o ! -name .DS_Store ! -name "*~"',
+            \ 'source': 'find . -type d -name .git -prune -o ! -name .DS_Store ! -name "*~" -name "*.*"',
             \ 'options': '--exact --reverse',
             \ 'sink': 'e'})
 
@@ -347,27 +347,33 @@ if executable('solargraph')
         \ })
 endif
 
-if executable('go-langserver')
-  au User lsp_setup call lsp#register_server({
-        \ 'name': 'go-langserver',
-        \ 'cmd': {server_info->['go-langserver', '-gocodecompletion']},
+"if executable('go-langserver')
+"  au User lsp_setup call lsp#register_server({
+"        \ 'name': 'go-langserver',
+"        \ 'cmd': {server_info->['go-langserver', '-gocodecompletion']},
+"        \ 'whitelist': ['go'],
+"        \ })
+"endif
+" see https://github.com/prabirshrestha/vim-lsp/wiki/Servers-Go
+if executable('gopls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'gopls',
+        \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
         \ 'whitelist': ['go'],
         \ })
 endif
-" see https://github.com/prabirshrestha/vim-lsp/wiki/Servers-Go
-"if executable('gopls')
-"  au User lsp_setup call lsp#register_server({
-"      \ 'name': 'gopls',
-"      \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
-"      \ 'whitelist': ['go'],
-"      \ })
-"endif
 
 autocmd filetype go nnoremap <silent> ;j :LspDefinition<CR>
-nnoremap <C-]> :LspDefinition<CR>
+autocmd filetype go nnoremap <silent> ;i :LspHover<CR>
+autocmd filetype go nnoremap <C-]> :LspDefinition<CR>
+"nmap <silent> <Leader>d :LspDefinition<CR>
+"nmap <silent> <Leader>p :LspHover<CR>
+"nmap <silent> <Leader>r :LspReferences<CR>
+"nmap <silent> <Leader>i :LspImplementation<CR>
 
 let g:lsp_async_completion = 1
 let g:lsp_signs_error = {'text': '✗'}
+" debug
 "let g:lsp_log_verbose = 1
 "let g:lsp_log_file = expand("~/.config/nvim/vim-lsp.log")
 

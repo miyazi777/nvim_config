@@ -148,6 +148,12 @@ nnoremap sh <C-w>h
 nnoremap sl <C-w>l
 
 " ---------------
+" quickfix setting
+" ---------------
+nnoremap PP :cprevious<CR>
+nnoremap NN :cnext<CR>
+
+" ---------------
 " method jump setting
 " ---------------
 nnoremap <C-]> g<C-]>
@@ -388,12 +394,6 @@ let g:lsp_signs_error = {'text': '✗'}
 
 autocmd FileType ruby setlocal omnifunc=lsp#complete
 autocmd FileType go setlocal omnifunc=lsp#complete
-
-" ---------------
-" quickfix setting
-" ---------------
-nnoremap PP :cprevious<CR>
-nnoremap NN :cnext<CR>
 
 " ---------------
 " vim-go.vim setting

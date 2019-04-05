@@ -114,6 +114,12 @@ autocmd BufNewFile,BufRead *.py nnoremap <C-e> :w<CR> :!python3 %<CR>
 autocmd BufNewFile,BufRead *.go nnoremap <C-e> :w<CR> :!go run %<CR>
 
 " ---------------
+" command line mode setting
+" ---------------
+set wildmenu
+set wildmode=list:longest
+
+" ---------------
 " terminal setting
 " ---------------
 set sh=zsh
@@ -152,6 +158,10 @@ nnoremap sl <C-w>l
 " ---------------
 nnoremap PP :cprevious<CR>
 nnoremap NN :cnext<CR>
+augroup QuickFixCmd
+  autocmd!
+  autocmd QuickFixCmdPost *grep* cwindow
+augroup END
 
 " ---------------
 " method jump setting
@@ -500,5 +510,3 @@ let g:yankround_max_history = 50
    let g:previm_enable_realtime = 1
  " }}}
 
-set wildmenu
-set wildmode=list:longest

@@ -76,6 +76,14 @@ set showmatch       " カッコの対応関係を表示
 source $VIMRUNTIME/macros/matchit.vim  " vimの%を拡張する
 
 " ---------------
+" grep setting
+" ---------------
+if executable('rg')
+  set grepprg=rg\ --vimgrep\ --no-heading
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
+
+" ---------------
 " command setting
 " ---------------
 set wildmenu        " コマンドモードの補完

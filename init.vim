@@ -213,6 +213,7 @@ Plug 'vimlab/split-term.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'LeafCage/yankround.vim'
 "Plug 'hackhowtofaq/vim-solargraph'
+Plug 'tpope/vim-fugitive'
 
 Plug 'tpope/vim-markdown'
 Plug 'kannokanno/previm'

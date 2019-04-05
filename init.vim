@@ -192,11 +192,9 @@ Plug 'sickill/vim-monokai', {'do': 'cp colors/* ~/.config/nvim/colors/'}
 Plug 'Haron-Prime/Antares', {'do': 'cp colors/* ~/.config/nvim/colors/'}
 
 Plug 'skywind3000/asyncrun.vim'
-Plug 'itchyny/vim-gitbranch'
 Plug 'itchyny/lightline.vim'
 Plug 'machakann/vim-highlightedyank'
 Plug 'mattesgroeger/vim-bookmarks'
-Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'ap/vim-buftabline'
@@ -213,6 +211,11 @@ Plug 'vimlab/split-term.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'LeafCage/yankround.vim'
 "Plug 'hackhowtofaq/vim-solargraph'
+
+Plug 'thinca/vim-quickrun'
+
+Plug 'itchyny/vim-gitbranch'
+Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
 Plug 'tpope/vim-markdown'
@@ -497,3 +500,5 @@ let g:yankround_max_history = 50
    let g:previm_enable_realtime = 1
  " }}}
 
+set wildmenu
+set wildmode=list:longest

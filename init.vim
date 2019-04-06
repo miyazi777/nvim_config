@@ -166,6 +166,8 @@ nnoremap sl <C-w>l
 " ---------------
 nnoremap PP :cprevious<CR>
 nnoremap NN :cnext<CR>
+nnoremap <A-p> :cprevious<CR>
+nnoremap <A-n> :cnext<CR>
 augroup QuickFixCmd
   autocmd!
   autocmd QuickFixCmdPost *grep* cwindow

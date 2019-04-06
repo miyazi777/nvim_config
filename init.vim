@@ -82,6 +82,7 @@ if executable('rg')
   set grepprg=rg\ --vimgrep\ --no-heading
   set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
+nnoremap S :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " ---------------
 " command setting

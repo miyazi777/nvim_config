@@ -1,6 +1,12 @@
 .cache/
 .git/
+plugged/
+colors/
+repos/
 
 *~
 .netrwhist
 tags
+vim-lsp.log
+asyncomplete.log
+

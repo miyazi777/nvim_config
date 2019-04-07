@@ -231,6 +231,7 @@ Plug 'simeji/winresizer'
 Plug 'vimlab/split-term.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'LeafCage/yankround.vim'
+Plug 'terryma/vim-expand-region'
 "Plug 'hackhowtofaq/vim-solargraph'
 
 Plug 'thinca/vim-quickrun'
@@ -522,3 +523,8 @@ let g:yankround_max_history = 50
    let g:previm_enable_realtime = 1
  " }}}
 
+" ---------------
+" vim-expand-region.vim setting
+" ---------------
+vmap v <Plug>(expand_region_expand)
+vmap V <Plug>(expand_region_shrink)

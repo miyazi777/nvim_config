@@ -221,12 +221,11 @@ Plug 'junegunn/fzf.vim'
 Plug 'ap/vim-buftabline'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
-Plug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim', { 'for': ['html'] }
 Plug 'deris/vim-shot-f'
-Plug 'posva/vim-vue'
+Plug 'posva/vim-vue', { 'for': ['vue'] }
 Plug 'rhysd/clever-f.vim'
-Plug 'glidenote/memolist.vim'
-"Plug 'itchyny/calendar.vim'
+Plug 'glidenote/memolist.vim', { 'on': ['MemoNew', 'MemoList', 'MemoGrep'] }
 Plug 'simeji/winresizer'
 Plug 'vimlab/split-term.vim'
 Plug 'ludovicchabant/vim-gutentags'
@@ -240,20 +239,20 @@ Plug 'itchyny/vim-gitbranch'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
-Plug 'tpope/vim-markdown'
-Plug 'kannokanno/previm'
-Plug 'tyru/open-browser.vim'
+Plug 'tpope/vim-markdown', { 'for': ['md'] }
+Plug 'kannokanno/previm', { 'for': ['md'] }
+Plug 'tyru/open-browser.vim', { 'for': ['md'] }
 
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'prabirshrestha/asyncomplete-gocode.vim'
+Plug 'prabirshrestha/asyncomplete-gocode.vim', { 'for': ['go'] }
 Plug 'prabirshrestha/asyncomplete-file.vim'
 Plug 'prabirshrestha/asyncomplete-buffer.vim'
 Plug 'prabirshrestha/asyncomplete-tags.vim'
 
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'fatih/vim-go', { 'for': ['go'], 'do': ':GoUpdateBinaries' }
 "Plug 'jodosha/vim-godebug'
 "Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 

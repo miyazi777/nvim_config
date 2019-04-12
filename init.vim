@@ -212,9 +212,6 @@ Plug 'altercation/vim-colors-solarized', {'do': 'cp colors/* ~/.config/nvim/colo
 Plug 'sickill/vim-monokai', {'do': 'cp colors/* ~/.config/nvim/colors/'}
 Plug 'Haron-Prime/Antares', {'do': 'cp colors/* ~/.config/nvim/colors/'}
 
-" filer
-Plug 'cocopon/vaffle.vim'
-
 Plug 'skywind3000/asyncrun.vim'
 " status line
 Plug 'itchyny/lightline.vim'
@@ -533,11 +530,6 @@ vmap v <Plug>(expand_region_expand)
 vmap V <Plug>(expand_region_shrink)
 
 " ---------------
-" vaffle.vim setting
-" ---------------
-nnoremap <silent> ;;f :Vaffle %:h<CR>
-
-" ---------------
 " rename file script
 " ---------------
 function! RenameFile()
@@ -550,4 +542,8 @@ function! RenameFile()
   endif
 endfunction
 command! Rename call RenameFile()
+
+" ---------------
+" TODO delete file script
+" ---------------
 

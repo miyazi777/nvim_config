@@ -212,7 +212,11 @@ Plug 'altercation/vim-colors-solarized', {'do': 'cp colors/* ~/.config/nvim/colo
 Plug 'sickill/vim-monokai', {'do': 'cp colors/* ~/.config/nvim/colors/'}
 Plug 'Haron-Prime/Antares', {'do': 'cp colors/* ~/.config/nvim/colors/'}
 
+" filer
+Plug 'cocopon/vaffle.vim'
+
 Plug 'skywind3000/asyncrun.vim'
+" status line
 Plug 'itchyny/lightline.vim'
 Plug 'machakann/vim-highlightedyank'
 Plug 'mattesgroeger/vim-bookmarks'
@@ -527,3 +531,23 @@ let g:yankround_max_history = 50
 " ---------------
 vmap v <Plug>(expand_region_expand)
 vmap V <Plug>(expand_region_shrink)
+
+" ---------------
+" vaffle.vim setting
+" ---------------
+nnoremap <silent> ;;f :Vaffle %:h<CR>
+
+" ---------------
+" rename file script
+" ---------------
+function! RenameFile()
+  let old_name = expand('%')
+  let new_name = input('New file name: ', expand('%'))
+  if new_name != '' && new_name != old_name
+    exec ':f ' . new_name . '|call delete(expand("#"))'
+    exec ':saveas ' . new_name
+    redraw!
+  endif
+endfunction
+command! Rename call RenameFile()
+

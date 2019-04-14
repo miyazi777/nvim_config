@@ -381,14 +381,7 @@ nnoremap <silent> ;;t :25Term<CR>
 "        \ 'whitelist': ['ruby'],
 "        \ })
 "endif
-
-"if executable('go-langserver')
-"  au User lsp_setup call lsp#register_server({
-"        \ 'name': 'go-langserver',
-"        \ 'cmd': {server_info->['go-langserver', '-gocodecompletion']},
-"        \ 'whitelist': ['go'],
-"        \ })
-"endif
+"
 " see https://github.com/prabirshrestha/vim-lsp/wiki/Servers-Go
 if executable('gopls')
     au User lsp_setup call lsp#register_server({

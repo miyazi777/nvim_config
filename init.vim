@@ -535,16 +535,23 @@ vmap V <Plug>(expand_region_shrink)
 " ---------------
 " rename file script
 " ---------------
-function! RenameFile()
+function! RenameFile(...)
   let old_name = expand('%')
-  let new_name = input('New current file name: ', expand('%'))
+
+  if a:0 >= 1
+    let default_name = expand("%:h") . '/' . a:1
+  else
+    let default_name = expand('%')
+  endif
+  let new_name = input('New current file name: ', default_name)
+
   if new_name != '' && new_name != old_name
     exec ':f ' . new_name . '|call delete(expand("#"))'
     exec ':saveas ' . new_name
     redraw!
   endif
 endfunction
-command! Rename call RenameFile()
+command! -nargs=? Rename call RenameFile(<f-args>)
 
 " ---------------
 " delete file script

@@ -316,7 +316,7 @@ command! -bang -nargs=* Find
 "nnoremap <silent> ;g :Tags<CR>
 " <C-]>でタグ検索
 "nnoremap <silent> <C-]> :call fzf#vim#tags(expand('<cword>'))<CR>
-autocmd filetype ruby nnoremap <silent> ;j :call fzf#vim#tags(expand('<cword>'))<CR>
+"autocmd filetype ruby nnoremap <silent> ;j :call fzf#vim#tags(expand('<cword>'))<CR>
 " fzfからファイルにジャンプできるようにする
 let g:fzf_buffers_jump = 1
 
@@ -373,15 +373,15 @@ nnoremap <silent> ;;t :25Term<CR>
 " ---------------
 " vim-lsp setting
 " ---------------
-"if executable('solargraph')
-"    au User lsp_setup call lsp#register_server({
-"        \ 'name': 'solargraph',
-"        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'solargraph stdio']},
-"        \ 'initialization_options': {"diagnostics": "true"},
-"        \ 'whitelist': ['ruby'],
-"        \ })
-"endif
-"
+if executable('solargraph')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'solargraph',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'solargraph stdio']},
+        \ 'initialization_options': {"diagnostics": "true"},
+        \ 'whitelist': ['ruby'],
+        \ })
+endif
+
 " see https://github.com/prabirshrestha/vim-lsp/wiki/Servers-Go
 if executable('gopls')
     au User lsp_setup call lsp#register_server({
@@ -438,9 +438,9 @@ autocmd FileType go nmap <silent> <M-o> :GoDebugStepOut<CR>
 " ---------------
 let g:asyncomplete_auto_popup = 1
 let g:asyncomplete_remove_duplicates = 1
-if has('gui_macvim')
-  let g:asyncomplete_log_file = expand('~/.vim/asyncomplete.log')
-end
+"if has('gui_macvim')
+"  let g:asyncomplete_log_file = expand('~/.vim/asyncomplete.log')
+"end
 "let g:asyncomplete_log_file = expand('~/.config/nvim/asyncomplete.log')
 "inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 "inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -449,48 +449,36 @@ end
 "autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " ---------------
-" asyncomplete-gocode.vim setting
-" ---------------
-"call asyncomplete#register_source(asyncomplete#sources#gocode#get_source_options({
-"    \ 'name': 'gocode',
-"    \ 'whitelist': ['go'],
-"    \ 'completor': function('asyncomplete#sources#gocode#completor'),
-"    \ 'config': {
-"    \    'gocode_path': expand('~/.golang/bin/gocode')
-"    \  },
-"    \ }))
-
-" ---------------
 " asyncomplete-file.vim setting
 " ---------------
-au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
-    \ 'name': 'file',
-    \ 'whitelist': ['*'],
-    \ 'priority': 10,
-    \ 'completor': function('asyncomplete#sources#file#completor')
-    \ }))
+"au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+"    \ 'name': 'file',
+"    \ 'whitelist': ['*'],
+"    \ 'priority': 10,
+"    \ 'completor': function('asyncomplete#sources#file#completor')
+"    \ }))
 
 " ---------------
 " asyncomplete-buffer.vim setting
 " ---------------
-call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
-    \ 'name': 'buffer',
-    \ 'whitelist': ['*'],
-    \ 'blacklist': ['go', 'ruby'],
-    \ 'completor': function('asyncomplete#sources#buffer#completor'),
-    \ }))
+"call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+"    \ 'name': 'buffer',
+"    \ 'whitelist': ['*'],
+"    \ 'blacklist': ['go', 'ruby'],
+"    \ 'completor': function('asyncomplete#sources#buffer#completor'),
+"    \ }))
 
 " ---------------
 " asyncomplete-tags.vim setting
 " ---------------
-au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
-    \ 'name': 'tags',
-    \ 'whitelist': ['ruby'],
-    \ 'completor': function('asyncomplete#sources#tags#completor'),
-    \ 'config': {
-    \    'max_file_size': 500000000,
-    \  },
-    \ }))
+"au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
+"    \ 'name': 'tags',
+"    \ 'whitelist': ['ruby'],
+"    \ 'completor': function('asyncomplete#sources#tags#completor'),
+"    \ 'config': {
+"    \    'max_file_size': 500000000,
+"    \  },
+"    \ }))
 
 " ---------------
 " yankround.vim setting

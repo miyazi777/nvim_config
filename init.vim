@@ -20,6 +20,10 @@ set inccommand=split
 " ターミナルモードを抜けるコマンド
 tnoremap <silent> jj <C-\><C-n>
 
+if has('gui_macvim')
+  cd ~/Dropbox/memo
+end
+
 " ---------------
 " macvim setting
 " ---------------

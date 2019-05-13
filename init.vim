@@ -525,6 +525,11 @@ function! RenameFile(...)
     let default_name = expand('%')
   endif
   let new_name = input('New current file name: ', default_name)
+  if filereadable(new_name)
+    redraw!
+    echo "Can't rename : Already exists new filename."
+    return
+  end
 
   if new_name != '' && new_name != old_name
     exec ':f ' . new_name . '|call delete(expand("#"))'
@@ -539,10 +544,11 @@ command! -nargs=? Rename call RenameFile(<f-args>)
 " ---------------
 function! DeleteFile()
   let old_name = expand('%')
-  let answer = input('Delete current file?(Y/n): ')
-  if old_name != '' && answer == 'Y'
-    exec 'call delete(expand("#"))|:bw'
+  let answer = confirm("Delete current file?", "&Y Yes\n&N No\n")
+  if old_name != '' && answer == 1
+    exec 'call delete(expand("%"))|:bw'
     redraw!
+    echo 'Deleted file : ' . old_name
   endif
 endfunction
 command! Delete call DeleteFile()

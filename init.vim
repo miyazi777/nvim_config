@@ -233,10 +233,10 @@ Plug 'rhysd/clever-f.vim'
 Plug 'glidenote/memolist.vim', { 'on': ['MemoNew', 'MemoList', 'MemoGrep'] }
 Plug 'simeji/winresizer'
 Plug 'vimlab/split-term.vim'
-Plug 'ludovicchabant/vim-gutentags'
+"Plug 'ludovicchabant/vim-gutentags'
 Plug 'LeafCage/yankround.vim'
 Plug 'terryma/vim-expand-region'
-"Plug 'hackhowtofaq/vim-solargraph'
+"Plug 'hackhowtofaq/vim-tionssolargraph'
 
 Plug 'thinca/vim-quickrun'
 
@@ -398,6 +398,10 @@ endif
 autocmd filetype go nnoremap <silent> ;j :LspDefinition<CR>
 autocmd filetype go nnoremap <silent> ;i :LspHover<CR>
 autocmd filetype go nnoremap <C-]> :LspDefinition<CR>
+
+autocmd filetype ruby nnoremap <silent> ;j :LspDefinition<CR>
+autocmd filetype ruby nnoremap <silent> ;i :LspHover<CR>
+autocmd filetype ruby nnoremap <C-]> :LspDefinition<CR>
 "nmap <silent> <Leader>d :LspDefinition<CR>
 "nmap <silent> <Leader>p :LspHover<CR>
 "nmap <silent> <Leader>r :LspReferences<CR>

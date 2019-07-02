@@ -396,6 +396,7 @@ if executable('gopls')
 endif
 
 autocmd filetype go nnoremap <silent> ;j :LspDefinition<CR>
+autocmd filetype go nnoremap <silent> ;r :LspReferences<CR>
 autocmd filetype go nnoremap <silent> ;i :LspHover<CR>
 autocmd filetype go nnoremap <C-]> :LspDefinition<CR>
 

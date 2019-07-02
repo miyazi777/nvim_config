@@ -136,7 +136,6 @@ set wildmode=list:longest
 " terminal setting
 " ---------------
 set sh=bash
-map <F6> :let $VIM_DIR=expand('%:h')<CR>:lcd $VIM_DIR<CR>:terminal<CR>lcd $VIM_DIR<CR>
 
 " ---------------
 " buffer setting

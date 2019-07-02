@@ -135,7 +135,8 @@ set wildmode=list:longest
 " ---------------
 " terminal setting
 " ---------------
-set sh=zsh
+set sh=bash
+map <F6> :let $VIM_DIR=expand('%:h')<CR>:lcd $VIM_DIR<CR>:terminal<CR>lcd $VIM_DIR<CR>
 
 " ---------------
 " buffer setting
@@ -371,8 +372,8 @@ let g:winresizer_start_key = 'sr'
 " split-term setting
 " ---------------
 set splitbelow
-nnoremap <silent> ;;t :25Term<CR>
-
+nnoremap <silent> ;;t :let $VIM_DIR=expand('%:p:h')<CR>:25Term<CR>cd $VIM_DIR<CR>
+let g:split_term_default_shell = "bash"
 
 " ---------------
 " vim-lsp setting

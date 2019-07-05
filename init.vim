@@ -131,6 +131,13 @@ autocmd BufNewFile,BufRead *.go nnoremap <C-e> :w<CR> :!go run %<CR>
 " ---------------
 set wildmenu
 set wildmode=list:longest
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
+cnoremap <C-n> <Down>
+cnoremap <C-p> <Up>
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-d> <Del>
 
 " ---------------
 " terminal setting

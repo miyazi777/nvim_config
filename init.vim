@@ -52,7 +52,7 @@ highlight CursorLine term=underline ctermfg=none ctermbg=none
 nnoremap j gj
 nnoremap k gk
 nnoremap <down> gj
-nnoremap <up> gj
+nnoremap <up> gk
 
 " ---------------
 " status line setting

@@ -239,14 +239,16 @@ Plug 'posva/vim-vue', { 'for': ['vue'] }
 Plug 'rhysd/clever-f.vim'
 Plug 'glidenote/memolist.vim', { 'on': ['MemoNew', 'MemoList', 'MemoGrep'] }
 Plug 'simeji/winresizer'
-Plug 'vimlab/split-term.vim'
+
 "Plug 'ludovicchabant/vim-gutentags'
 Plug 'LeafCage/yankround.vim'
 Plug 'terryma/vim-expand-region'
 "Plug 'hackhowtofaq/vim-tionssolargraph'
 
-Plug 'thinca/vim-quickrun'
+" terminal plugin
+Plug 'vimlab/split-term.vim'
 
+" git plugin
 Plug 'itchyny/vim-gitbranch'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -255,6 +257,10 @@ Plug 'tpope/vim-fugitive'
 "Plug 'kannokanno/previm', { 'for': ['md'] }
 "Plug 'tyru/open-browser.vim', { 'for': ['md'] }
 
+" programing plugin
+Plug 'thinca/vim-quickrun'
+
+" lpp & complete plugin
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete.vim'
@@ -264,10 +270,13 @@ Plug 'prabirshrestha/asyncomplete-file.vim'
 Plug 'prabirshrestha/asyncomplete-buffer.vim'
 Plug 'prabirshrestha/asyncomplete-tags.vim'
 
+" go-lang plugin
 Plug 'fatih/vim-go', { 'for': ['go'], 'do': ':GoUpdateBinaries' }
 Plug 'jodosha/vim-godebug'
 "Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 
+" calculate plugin
+Plug 'sk1418/HowMuch'
 call plug#end()
 
 " ---------------
@@ -525,6 +534,17 @@ let g:yankround_max_history = 50
 " ---------------
 vmap v <Plug>(expand_region_expand)
 vmap V <Plug>(expand_region_shrink)
+
+" ---------------
+" HowMuch setting
+" ---------------
+"The scale of the result:
+let g:HowMuch_scale = 2
+"the engine order for auto-calculation
+let g:HowMuch_auto_engines = ['bc', 'vim']
+
+
+
 
 " ---------------
 " scripts

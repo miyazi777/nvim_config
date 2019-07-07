@@ -253,9 +253,8 @@ Plug 'itchyny/vim-gitbranch'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
-"Plug 'tpope/vim-markdown', { 'for': ['md'] }
-"Plug 'kannokanno/previm', { 'for': ['md'] }
-"Plug 'tyru/open-browser.vim', { 'for': ['md'] }
+" markdown plugin
+Plug 'iamcco/markdown-preview.vim', { 'for': ['markdown'] }
 
 " programing plugin
 Plug 'thinca/vim-quickrun'
@@ -517,19 +516,6 @@ let g:yankround_max_history = 50
 
 
 " ---------------
-" previm.vim setting
-" ---------------
-""" markdown {{{
-   autocmd BufRead,BufNewFile *.mkd  set filetype=markdown
-   autocmd BufRead,BufNewFile *.md  set filetype=markdown
-   " Need: kannokanno/previm
-   nnoremap <silent> ;;p :PrevimOpen<CR> " ;;pでプレビュー
-   " 自動で折りたたまないようにする
-   let g:vim_markdown_folding_disabled=1
-   let g:previm_enable_realtime = 1
- " }}}
-
-" ---------------
 " vim-expand-region.vim setting
 " ---------------
 vmap v <Plug>(expand_region_expand)
@@ -544,6 +530,11 @@ let g:HowMuch_scale = 2
 let g:HowMuch_auto_engines = ['bc', 'vim']
 
 
+" ---------------
+" markdown-preview.vim setting
+" ---------------
+let g:mkdp_auto_close = 0   " ファイルを閉じるとブラウザ側も閉じる
+nnoremap <silent> ;;p :MarkdownPreview<CR> " ;;pでプレビュー
 
 
 " ---------------

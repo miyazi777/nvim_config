@@ -254,7 +254,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
 " markdown plugin
-Plug 'iamcco/markdown-preview.vim', { 'for': ['markdown'] }
+Plug 'iamcco/markdown-preview.nvim', { 'for': ['markdown'], 'do': 'cd app & yarn install'  }
 
 " programing plugin
 Plug 'thinca/vim-quickrun'
@@ -533,7 +533,6 @@ let g:HowMuch_auto_engines = ['bc', 'vim']
 " ---------------
 " markdown-preview.vim setting
 " ---------------
-let g:mkdp_auto_close = 0   " ファイルを閉じるとブラウザ側も閉じる
 nnoremap <silent> ;;p :MarkdownPreview<CR> " ;;pでプレビュー
 
 

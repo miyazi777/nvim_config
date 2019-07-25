@@ -521,7 +521,7 @@ let g:yankround_max_history = 50
 " vim-expand-region.vim setting
 " ---------------
 vmap v <Plug>(expand_region_expand)
-vmap V <Plug>(expand_region_shrink)
+vmap <C-v> <Plug>(expand_region_shrink)
 
 " ---------------
 " HowMuch setting

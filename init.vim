@@ -449,6 +449,8 @@ autocmd FileType go nmap <leader>b  <Plug>(go-build)
 autocmd FileType go nmap <leader>r  <Plug>(go-run)
 let g:go_list_type = "quickfix"
 
+let g:go_fmt_command = "goimports"
+
 " debug setting
 autocmd FileType go nmap <silent> <M-d> :GoDebugStart<CR>
 autocmd FileType go nmap <silent> <M-q> :GoDebugStop<CR>
